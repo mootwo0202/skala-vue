@@ -1,44 +1,10 @@
 # skala-vue
 
-This template should help get you started developing with Vue 3 in Vite.
+과제는 App.vue, code challenge는 CodepracApp.vue에 코드를 작성했다.
+각각 src/components/exercise 와 src/components/exercise/practices/basic 에 vue파일을 넣었다.
 
-## Recommended IDE Setup
+## 과제 1 - Weather Mockup
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+원본에서 여러 도시를 추가했다.
+기온은 25도와 30도를 기준으로 선선함, 더움, 매우 더움으로 나눠서 보여준다.
+각 도시의 예상 강수량을 추가해 카드나 상세보기를 누르면 강수량을 함께 확인할 수 있도록 수정했다.
