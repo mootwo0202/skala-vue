@@ -12,11 +12,19 @@ const weatherList = ref([
 
 const searchQuery = ref('')
 const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
-
 const showDetail = (cityName, status, rainfall) => {
   window.alert(
     `${cityName}의 현재 날씨는 [${status}] 상태이며, 예상 강수량은 ${rainfall}mm입니다.`,
   )
+}
+
+const searchCity = () => {
+  const query = searchQuery.value.trim()
+  const city = weatherList.value.find((item) => item.name === query)
+
+  selectedCityInfo.value = city
+    ? `${city.name} 검색 완료! 예상 강수량은 ${city.rainfall}mm입니다.`
+    : '일치하는 도시가 없습니다.'
 }
 </script>
 
@@ -28,8 +36,10 @@ const showDetail = (cityName, status, rainfall) => {
         type="text"
         :value="searchQuery"
         @input="(e) => (searchQuery = e.target.value)"
+        @keyup.enter="searchCity"
         placeholder="검색할 도시 이름 입력"
       />
+      <button @click="searchCity">도시 찾기</button>
       <p>
         검색 중인 도시: <strong>{{ searchQuery }}</strong>
       </p>

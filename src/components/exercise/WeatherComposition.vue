@@ -28,6 +28,9 @@ const filteredWeatherList = computed(() => {
 
   return result
 })
+const filteredRainfallTotal = computed(() => {
+  return filteredWeatherList.value.reduce((total, item) => total + item.rainfall, 0)
+})
 watch(selectedCityInfo, (newInfo) => {
   console.log(`👁️‍🗨️ [watch 감지] 상태 바 문구가 업데이트되었습니다 -> "${newInfo}"`)
 })
@@ -58,6 +61,7 @@ const showDetail = (cityName, status, rainfall) => {
         검색 중인 도시: <strong>{{ searchQuery }}</strong>
       </p>
       <p>현재 비 소식이 있는 도시: <strong>{{ rainyCityCount }}곳</strong></p>
+      <p>현재 목록의 예상 강수량 합계: <strong>{{ filteredRainfallTotal }}mm</strong></p>
       <button @click="showRainyOnly = !showRainyOnly">
         {{ showRainyOnly ? '전체 도시 보기' : '비 오는 도시만 보기' }}
       </button>
