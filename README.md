@@ -31,3 +31,13 @@
 - WeatherSummary 컴포넌트를 추가해 현재 표시된 도시 수, 비 소식이 있는 도시 수, 현재 목록의 강수량 합계를 props로 받아 한곳에 보여준다.
 - 강수량이 있는 도시 카드에만 우산 알림 버튼을 추가했다. 버튼을 누르면 WeatherCard가 umbrella-reminder 이벤트와 도시 이름, 강수량을 부모로 보낸다.
 - WeatherParent는 umbrella-reminder를 받아 상태바에 해당 도시의 강수량과 우산을 챙기라는 문구를 보여준다. @click.stop을 사용해 우산 알림을 누를 때 카드 선택 이벤트가 함께 실행되지 않도록 했다.
+
+## 과제 4 - Weather Router
+
+- 과제 3의 6개 도시, 예상 강수량, 비 오는 도시 필터, 강수량 합계, 우산 알림 기능을 라우터 화면에도 그대로 적용했다.
+- router/index.js에 날씨 대시보드, 서비스 소개, 도시 상세, 우산 가이드, 잘못된 경로에 대한 라우트를 추가했다. 홈 화면을 제외한 View는 lazy loading으로 불러오도록 했다.
+- App.vue에서 RouterLink로 날씨 대시보드, 서비스 소개, 우산 가이드를 이동할 수 있게 했고 RouterView에 선택한 화면이 보이도록 했다.
+- WeatherHomeView에서 검색어가 바뀌면 watch()가 URL의 search 쿼리에 검색어를 저장한다. 새로고침해도 onMounted()가 쿼리를 읽어 검색 상태를 다시 복구한다.
+- 날씨 카드의 상세보기를 누르면 router.push()로 /weather/:cityId 경로에 이동하도록 했다. WeatherDetailView는 URL의 cityId를 읽어 6개 도시의 기온, 날씨, 습도, 풍속, 강수량을 보여준다.
+- 존재하지 않는 도시 ID나 잘못된 경로로 접속하면 catch-all 라우트를 통해 NotFoundView를 보여주고, 버튼을 누르면 날씨 메인으로 돌아가도록 했다.
+- 개인 추가 View로 RainGuideView를 만들었다. 비 소식이 있는 도시와 예상 강수량 합계를 보여주고, 도시 버튼을 누르면 해당 도시의 상세 화면으로 이동한다.
