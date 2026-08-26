@@ -1,7 +1,8 @@
 # skala-vue
 
-과제는 App.vue, code challenge는 CodepracApp.vue에 코드를 작성했다.
-각각 src/components/exercise 와 src/components/exercise/practices/basic 에 vue파일을 넣었다.
+- 과제는 App.vue, code challenge는 CodepracApp.vue에 코드를 작성했다.
+- 각각 src/components/exercise 와 src/components/exercise/practices/basic 에 vue파일을 넣었다.
+- css를 수정할 때 ai를 사용해 코드를 생성하였다.
 
 ## 과제 1 - Weather Mockup
 
@@ -9,9 +10,24 @@
 - 기온은 25도와 30도를 기준으로 선선함, 더움, 매우 더움으로 나눠서 보여준다.
 - 각 도시의 예상 강수량을 추가해 카드나 상세보기를 누르면 강수량을 함께 확인할 수 있도록 수정했다.
 - find()를 추가로 사용해 입력한 도시를 목록에서 찾도록 했다. 도시 찾기 버튼이나 Enter를 누르면 검색 결과와 강수량을 보여준다.
+- 도시 찾기 버튼을 누르거나 Enter를 입력하면 searchCity()가 실행된다. 도시를 찾으면 이름과 강수량을 상태바에 보여주고, 찾지 못하면 일치하는 도시가 없다는 문구를 보여준다.
 
 ## 과제 2 - Weather Composition
 
 - 과제 1의 도시와 강수량 데이터를 그대로 사용하고, 입력한 검색어에 맞는 도시만 보여주도록 수정했다.
 - 현재 비 소식이 있는 도시 수를 보여주고, 비 오는 도시만 모아서 볼 수 있는 버튼을 추가했다.
 - reduce()를 추가로 사용해 현재 화면에 보이는 도시들의 예상 강수량을 모두 더했다. 검색이나 비 오는 도시 필터를 사용하면 합계도 함께 바뀐다.
+- rainyCityCount에서 강수량이 0보다 큰 도시만 계산해 현재 비 소식이 있는 도시 수를 보여준다.
+- 비 오는 도시만 보기 버튼을 누르면 showRainyOnly 상태가 바뀌고, 검색 결과 중 강수량이 있는 도시만 남긴다. 버튼을 다시 누르면 전체 도시를 보여준다.
+- 도시를 검색하거나 비 오는 도시만 보면 reduce()로 계산한 강수량 합계도 현재 목록에 맞춰 자동으로 바뀐다.
+- showRainyOnly가 바뀌면 watch()가 변경된 필터 상태를 콘솔에 남기도록 했다.
+
+## 과제 3 - Weather Component
+
+- 과제 2의 6개 도시, 기온 구분, 예상 강수량, 검색, 비 오는 도시 필터 기능을 그대로 유지했다.
+- WeatherParent에서 도시 목록과 검색어, 필터 상태, 강수량 계산 결과를 관리하도록 했다.
+- SearchBar는 부모에서 검색어와 비 오는 도시 필터 상태를 props로 받는다. 검색어가 바뀌면 update-query, 필터 버튼을 누르면 toggle-rainy 이벤트를 부모로 보낸다.
+- WeatherCard는 도시 데이터를 props로 받아 기온과 강수량을 보여준다. 카드 선택과 상세보기는 select-card와 click-detail 이벤트로 부모에 전달한다.
+- WeatherSummary 컴포넌트를 추가해 현재 표시된 도시 수, 비 소식이 있는 도시 수, 현재 목록의 강수량 합계를 props로 받아 한곳에 보여준다.
+- 강수량이 있는 도시 카드에만 우산 알림 버튼을 추가했다. 버튼을 누르면 WeatherCard가 umbrella-reminder 이벤트와 도시 이름, 강수량을 부모로 보낸다.
+- WeatherParent는 umbrella-reminder를 받아 상태바에 해당 도시의 강수량과 우산을 챙기라는 문구를 보여준다. @click.stop을 사용해 우산 알림을 누를 때 카드 선택 이벤트가 함께 실행되지 않도록 했다.
