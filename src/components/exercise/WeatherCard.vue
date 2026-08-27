@@ -21,7 +21,7 @@ const displayTemp = computed(() => {
 
 const selectedCityMessage = computed(() => {
   if (configStore.rainfallVisible) {
-    return `${props.cityItem.name}이 선택되었습니다. 예상 강수량은 ${props.cityItem.rainfall}mm입니다.`
+    return `${props.cityItem.name}이 선택되었습니다. 최근 강수량은 ${props.cityItem.rainfall}mm입니다.`
   }
   return `${props.cityItem.name}이 선택되었습니다.`
 })
@@ -33,8 +33,8 @@ const selectedCityMessage = computed(() => {
     <p>현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
 
     <template v-if="configStore.rainfallVisible">
-      <p v-if="cityItem.rainfall > 0">예상 강수량: {{ cityItem.rainfall }}mm ☔</p>
-      <p v-else>예상 강수량: 0mm ☀️</p>
+      <p v-if="cityItem.rainfall > 0">최근 강수량: {{ cityItem.rainfall }}mm ☔</p>
+      <p v-else>최근 강수량: 0mm ☀️</p>
     </template>
 
     <span v-if="cityItem.temp >= 30" class="badge hot">🔥🔥 매우 더움</span>

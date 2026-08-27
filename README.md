@@ -1,8 +1,9 @@
 # skala-vue
 
-- 과제는 App.vue, code challenge는 CodepracApp.vue에 코드를 작성했다.
+- Hands on 과제는 App.vue, code challenge는 CodepracApp.vue에 코드를 작성했다.
 - 각각 src/components/exercise 와 src/components/exercise/practices/basic 에 vue파일을 넣었다.
-- css를 수정할 때 ai를 사용해 코드를 생성하였다.
+- api 형식 확인과 css를 수정할 때 ai를 사용해 코드를 생성하였다.
+- scoped 스타일의 css를 사용하기보다 css파일에 담아 사용하도록 바꾸었다.
 
 ## 과제 1 - Weather Mockup
 
@@ -51,3 +52,14 @@
 - 개인 추가 기능으로 configStore에 강수량 표시 여부를 저장하는 rainfallVisible 상태, 버튼 문구를 정하는 rainfallButtonLabel getter, 표시 상태를 바꾸는 toggleRainfall action을 추가했다.
 - 강수량 숨기기 버튼을 누르면 WeatherCard와 WeatherDetailView의 강수량이 동시에 숨겨지고, 강수량과 관련된 우산 알림 버튼과 안내 문구도 함께 보이지 않도록 했다. 다시 강수량 보기 버튼을 누르면 기존 기능이 그대로 나타난다.
 - 온도 단위와 강수량 표시 상태를 각 컴포넌트에서 따로 관리하지 않고 configStore에서 관리해 어느 화면에서든 같은 설정이 적용되도록 했다.
+
+## 과제 6 - Weather Axios
+
+- Axios 라이브러리를 설치하고 WeatherHomeView에서 OpenWeather Current Weather API를 호출해 기존의 고정 날씨 데이터를 실시간 데이터로 변경했다.
+- 서울, 수원, 부산, 용인, 성남, 안양의 날씨를 Promise.all()로 동시에 요청하고, 응답받은 기온, 날씨 상태, 최근 강수량을 기존 WeatherCard 형식에 맞게 가공했다. 요청 중에는 로딩 문구를 보여주고 통신 실패 시 콘솔에 에러가 남도록 처리했다.
+- 기존 과제의 6개 도시 검색, 비 오는 도시만 보기, 강수 요약, 우산 알림 기능을 유지했다. 모의 강수량 대신 OpenWeather 응답의 최근 강수량을 사용해 필터와 합계가 실시간 데이터에 맞춰 계산된다.
+- WeatherDetailView는 Current Weather API에서 받은 위도와 경도를 이용해 무료 플랜에 포함된 5 Day / 3 Hour Forecast API와 Air Pollution API를 추가로 호출한다.
+- 예보 데이터 중 8개 구간을 사용해 향후 24시간의 3시간 단위 기온, 날씨 상태, 강수 확률, 예상 강수량을 보여준다. 도시의 timezone 값을 적용해 각 예보 시각도 지역 시간에 맞게 표시한다.
+- Air Pollution API의 AQI를 좋음부터 매우 나쁨까지 5단계로 구분하고, 초미세먼지(PM2.5)와 미세먼지(PM10) 수치를 함께 보여준다.
+- 과제 5에서 만든 Pinia 설정을 실시간 데이터에도 적용했다. 단위변경 버튼을 누르면 현재 기온, 체감 온도, 예보 기온이 함께 섭씨 또는 화씨로 바뀌고, 강수량 숨기기를 사용하면 날씨 카드와 현재 날씨 상세의 강수량 및 우산 안내가 함께 숨겨진다.
+- 기타 외부 API 실습으로 AxiosJson 컴포넌트에서 JSONPlaceholder API를 사용했다. GET으로 목록을 읽고 POST, PUT, DELETE 요청으로 추가, 수정, 삭제 기능을 구현했다.
