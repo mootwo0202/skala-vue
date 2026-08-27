@@ -640,3 +640,321 @@ input {
     animation: none;
   }
 }
+
+/* Assignment selector */
+.app-mode-menu {
+  max-width: 900px;
+  padding-top: 46px;
+  padding-bottom: 46px;
+  text-align: center;
+}
+
+.mode-menu-eyebrow,
+.baseball-eyebrow {
+  margin: 0 0 8px;
+  color: var(--exercise-primary);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.app-mode-menu > h1 {
+  justify-content: center;
+  margin-bottom: 8px;
+  font-size: clamp(1.65rem, 4vw, 2.15rem);
+}
+
+.mode-menu-description {
+  margin: 0;
+  color: var(--exercise-muted);
+}
+
+.mode-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+  text-align: left;
+}
+
+.mode-choice-card {
+  height: 100%;
+  border-color: #dbeafe;
+  border-radius: 16px;
+}
+
+.mode-choice-card .el-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 250px;
+  padding: 28px;
+}
+
+.mode-choice-icon {
+  font-size: 2.3rem;
+}
+
+.mode-choice-card h2 {
+  margin: 18px 0 8px;
+  color: #172033;
+  font-size: 1.25rem;
+}
+
+.mode-choice-card p {
+  flex: 1;
+  margin: 0 0 24px;
+  color: var(--exercise-muted);
+  line-height: 1.65;
+}
+
+.baseball-choice-card {
+  border-color: #bbf7d0;
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.app-mode-toolbar {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto -12px;
+}
+
+/* Baseball weather */
+.baseball-weather {
+  max-width: 1060px;
+}
+
+.baseball-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--exercise-border);
+}
+
+.baseball-header h1 {
+  margin-bottom: 7px;
+}
+
+.baseball-header p:last-child {
+  margin: 0;
+  color: var(--exercise-muted);
+}
+
+.baseball-loading,
+.baseball-game-grid {
+  margin-top: 24px;
+}
+
+.baseball-game-grid > .el-col {
+  margin-bottom: 18px;
+}
+
+.baseball-game-card {
+  height: 100%;
+  border-color: #d9e5df;
+  border-radius: 15px;
+}
+
+.baseball-game-card .el-card__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 400px;
+  padding: 22px;
+}
+
+.game-card-topline {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #475569;
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.game-card-topline > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.baseball-matchup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0;
+  color: #172033;
+  text-align: center;
+}
+
+.baseball-matchup strong {
+  font-size: 1.18rem;
+  overflow-wrap: anywhere;
+}
+
+.baseball-matchup span {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.ballpark-weather-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  padding: 14px 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+}
+
+.ballpark-weather-summary > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 5px;
+  text-align: center;
+}
+
+.ballpark-weather-summary span {
+  color: var(--exercise-muted);
+  font-size: 0.72rem;
+}
+
+.ballpark-weather-summary strong {
+  color: #26354a;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.playability-box {
+  margin-top: 16px;
+  padding: 15px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 11px;
+}
+
+.playability-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #166534;
+  font-size: 0.8rem;
+}
+
+.playability-title > strong {
+  min-width: 0;
+}
+
+.playability-box p {
+  margin: 10px 0 0;
+  color: #4b6353;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.baseball-detail-button {
+  width: 100%;
+  margin-top: auto;
+}
+
+.baseball-disclaimer {
+  margin: 5px 0 0;
+  color: var(--exercise-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.baseball-detail-drawer .el-drawer__header {
+  margin-bottom: 0;
+  padding-bottom: 18px;
+  color: #172033;
+  font-weight: 800;
+  border-bottom: 1px solid var(--exercise-border);
+}
+
+.baseball-detail-drawer .el-drawer__body {
+  padding: 22px;
+  background: #f8fafc;
+}
+
+.baseball-drawer-detail {
+  padding: 20px;
+  box-shadow: none;
+}
+
+.drawer-playability {
+  margin-top: 20px;
+  padding: 16px;
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+}
+
+.drawer-playability > strong {
+  margin-right: 9px;
+}
+
+.drawer-playability ul {
+  margin: 11px 0 0;
+  padding-left: 20px;
+  color: #4b6353;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 720px) {
+  .mode-choice-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .baseball-header {
+    flex-direction: column;
+  }
+
+  .baseball-header .unit-control {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-mode-menu,
+  .baseball-weather {
+    padding: 24px 16px;
+  }
+
+  .mode-choice-card .el-card__body {
+    min-height: 220px;
+    padding: 22px;
+  }
+
+  .baseball-game-card .el-card__body {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .ballpark-weather-summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .playability-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .baseball-detail-drawer .el-drawer__body {
+    padding: 12px;
+  }
+
+  .baseball-drawer-detail {
+    padding: 14px;
+  }
+}

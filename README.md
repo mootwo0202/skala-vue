@@ -5,6 +5,19 @@
 - api 형식 확인과 css를 수정할 때 ai를 사용해 코드를 생성하였다.
 - scoped 스타일의 css를 사용하기보다 css파일에 담아 사용하도록 바꾸었다.
 
+## 개인화 프로젝트: 야구장 날씨
+
+- 프로젝트 아키텍쳐와 새로 만든 BaseballWeather.vue,baseballData.js의 코드에서 구조작성에서 ai를 활용했다.
+- 외부 UI Library로 Element Plus를 선택하고 카드, 버튼, 태그, 진행률, 알림, Skeleton, Empty, Drawer 컴포넌트를 야구장 날씨 화면에 적용했다.
+- App.vue의 첫 화면에서 기존 날씨 과제와 야구장 날씨 과제를 선택할 수 있도록 나눴다. 기존 과제 코드는 그대로 유지하고 선택한 화면만 렌더링해 불필요한 API 호출이 발생하지 않도록 했다.
+- Parse.bot의 KBO Schedule API로 해당 월의 프로야구 일정을 가져온 뒤 한국 날짜를 기준으로 오늘 경기만 필터링한다. 같은 브라우저에서 일정을 반복 호출하지 않도록 월간 일정 응답을 날짜별로 localStorage에 저장해 하루 동안 재사용한다.
+- 잠실, 고척, 문학, 수원, 대전, 광주, 대구, 사직, 창원의 9개 구장 위치를 baseballData.js에 고정 데이터로 작성했다. 일정 API의 구장 이름을 9개 구장 데이터와 연결해 각 구장의 위도와 경도로 날씨를 요청한다.
+- OpenWeather 5 Day / 3 Hour Forecast API에서 경기 시작 시각과 가장 가까운 예보를 찾아 예상 기온, 날씨 상태, 강수 확률을 경기 카드에 표시한다.
+- 강수 확률, 예상 강수량, 천둥·번개, 풍속, 기온을 기준으로 점수를 차감하는 방식의 경기 진행 가능성 알고리즘을 작성했다. 고척스카이돔은 외부 강수의 영향을 거의 받지 않도록 별도로 처리했으며, 계산 결과를 진행률과 상태 태그로 보여준다.
+- 구장 날씨 상세보기는 새로운 라우트를 추가하지 않고 Element Plus Drawer로 구성했다. 기존 WeatherDetailView의 구조를 활용해 현재 기온, 체감 온도, 날씨, 습도, 풍속, 강수량, 대기질과 향후 24시간 예보를 함께 확인할 수 있도록 했다.
+- 과제 5의 configStore와 UnitToggler를 그대로 사용해 야구장 날씨에서도 섭씨·화씨 단위변경과 강수량 표시 여부가 동일하게 적용된다.
+- Parse.bot과 OpenWeather API 키는 소스코드에 직접 작성하지 않고 .env.local의 VITE_PARSE_API_KEY와 VITE_OPENWEATHER_API_KEY로 분리했다. 컴포넌트에서는 import.meta.env를 통해 환경변수를 불러오며 .env.local은 Git에 업로드되지 않도록 했다.
+
 ## 과제 1 - Weather Mockup
 
 - 원본에서 여러 도시를 추가했다.

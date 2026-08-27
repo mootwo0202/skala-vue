@@ -14,7 +14,7 @@ const searchQuery = ref('')
 const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
 const showRainyOnly = ref(false)
 const isLoading = ref(false)
-const API_KEY = '98ff79e1c892b7496fac9c6a13c03d5d'
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 const CITIES = [
   { id: 'city_01', name: '서울', query: 'Seoul,KR' },

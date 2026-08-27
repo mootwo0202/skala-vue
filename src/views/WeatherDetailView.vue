@@ -12,7 +12,7 @@ const forecastList = ref([])
 const airQuality = ref(null)
 const isLoading = ref(false)
 const errorMessage = ref('')
-const API_KEY = '98ff79e1c892b7496fac9c6a13c03d5d'
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY
 const WEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5'
 const cityMapping = {
   city_01: { english: 'Seoul', korean: '대한민국 서울특별시' },

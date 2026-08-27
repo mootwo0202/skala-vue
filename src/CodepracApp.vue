@@ -50,6 +50,8 @@ import SlotScopedParent from '@/components/practices/component/SlotScopedParent.
 import StoreCounter from './components/practices/library/StoreCounter.vue'
 import AxiosWeather from './components/practices/library/AxiosWeather.vue'
 import AxiosJson from './components/practices/library/AxiosJson.vue'
+import ElementPlus from './components/practices/library/ElementPlus.vue'
+import EcmaScript from './components/practices/library/EcmaScript.vue'
 </script>
 
 <template>
@@ -119,6 +121,12 @@ import AxiosJson from './components/practices/library/AxiosJson.vue'
     <hr />
     <AxiosWeather />
     <AxiosJson />
+    <h1>13. Element Plus</h1>
+    <hr />
+    <ElementPlus />
+    <h1>14. Modern JavaScript</h1>
+    <hr />
+    <EcmaScript />
   </div>
 </template>
 
