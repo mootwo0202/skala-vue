@@ -1,7 +1,7 @@
 # skala-vue
 
 - Hands on 과제는 App.vue, code challenge는 CodepracApp.vue에 코드를 작성했다.
-- 각각 src/components/exercise 와 src/components/exercise/practices/basic 에 vue파일을 넣었다.
+- 각각 src/components/exercise 와 src/components/exercise/practices 에 vue파일을 넣었다.
 - api 형식 확인과 css를 수정할 때 ai를 사용해 코드를 생성하였다.
 - scoped 스타일의 css를 사용하기보다 css파일에 담아 사용하도록 바꾸었다.
 
