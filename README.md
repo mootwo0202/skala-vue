@@ -41,3 +41,13 @@
 - 날씨 카드의 상세보기를 누르면 router.push()로 /weather/:cityId 경로에 이동하도록 했다. WeatherDetailView는 URL의 cityId를 읽어 6개 도시의 기온, 날씨, 습도, 풍속, 강수량을 보여준다.
 - 존재하지 않는 도시 ID나 잘못된 경로로 접속하면 catch-all 라우트를 통해 NotFoundView를 보여주고, 버튼을 누르면 날씨 메인으로 돌아가도록 했다.
 - 개인 추가 View로 RainGuideView를 만들었다. 비 소식이 있는 도시와 예상 강수량 합계를 보여주고, 도시 버튼을 누르면 해당 도시의 상세 화면으로 이동한다.
+
+## 과제 5 - Weather Store
+
+- 과제 4까지 만든 날씨 대시보드에 Pinia Store를 적용해 여러 컴포넌트가 같은 설정을 사용할 수 있도록 했다.
+- configStore에 현재 온도 단위를 저장하는 unit 상태와 단위 기호를 반환하는 unitSymbol getter, 섭씨와 화씨를 바꾸는 toggleUnit action을 작성했다.
+- UnitToggler 컴포넌트를 Navigation Bar에 배치했다. 단위변경 버튼을 누르면 toggleUnit()이 실행되고 현재 단위와 기호가 함께 바뀐다.
+- WeatherCard와 WeatherDetailView에서 computed()를 사용해 Store의 단위가 화씨일 때 `(섭씨 × 9 / 5) + 32`로 기온을 변환한다. 원본 기온 데이터는 수정하지 않고 화면에 표시되는 값만 변경되도록 했다.
+- 개인 추가 기능으로 configStore에 강수량 표시 여부를 저장하는 rainfallVisible 상태, 버튼 문구를 정하는 rainfallButtonLabel getter, 표시 상태를 바꾸는 toggleRainfall action을 추가했다.
+- 강수량 숨기기 버튼을 누르면 WeatherCard와 WeatherDetailView의 강수량이 동시에 숨겨지고, 강수량과 관련된 우산 알림 버튼과 안내 문구도 함께 보이지 않도록 했다. 다시 강수량 보기 버튼을 누르면 기존 기능이 그대로 나타난다.
+- 온도 단위와 강수량 표시 상태를 각 컴포넌트에서 따로 관리하지 않고 configStore에서 관리해 어느 화면에서든 같은 설정이 적용되도록 했다.

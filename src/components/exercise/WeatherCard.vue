@@ -1,34 +1,48 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { useConfigStore } from '@/stores/configStore'
+
+const props = defineProps({
   cityItem: {
     type: Object,
     required: true,
-  }
+  },
 })
 const emit = defineEmits(['select-card', 'click-detail', 'umbrella-reminder'])
+const configStore = useConfigStore()
+
+const displayTemp = computed(() => {
+  const rawTemp = props.cityItem.temp
+  if (configStore.unit === 'fahrenheit') {
+    return Math.round((rawTemp * 9) / 5 + 32)
+  }
+  return rawTemp
+})
+
+const selectedCityMessage = computed(() => {
+  if (configStore.rainfallVisible) {
+    return `${props.cityItem.name}이 선택되었습니다. 예상 강수량은 ${props.cityItem.rainfall}mm입니다.`
+  }
+  return `${props.cityItem.name}이 선택되었습니다.`
+})
 </script>
 
 <template>
-  <div
-    class="weather-card"
-    @click="
-      emit(
-        'select-card',
-        `${cityItem.name}이 선택되었습니다. 예상 강수량은 ${cityItem.rainfall}mm입니다.`,
-      )
-    "
-  >
+  <div class="weather-card" @click="emit('select-card', selectedCityMessage)">
     <h4>{{ cityItem.name }} ({{ cityItem.status }})</h4>
-    <p>현재 기온: {{ cityItem.temp }}°C</p>
-    <p v-if="cityItem.rainfall > 0">예상 강수량: {{ cityItem.rainfall }}mm ☔</p>
-    <p v-else>예상 강수량: 0mm ☀️</p>
+    <p>현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
+
+    <template v-if="configStore.rainfallVisible">
+      <p v-if="cityItem.rainfall > 0">예상 강수량: {{ cityItem.rainfall }}mm ☔</p>
+      <p v-else>예상 강수량: 0mm ☀️</p>
+    </template>
 
     <span v-if="cityItem.temp >= 30" class="badge hot">🔥🔥 매우 더움</span>
     <span v-else-if="cityItem.temp >= 25" class="badge hot">🔥 더움</span>
     <span v-else class="badge cool">❄️ 선선함</span>
 
     <button
-      v-if="cityItem.rainfall > 0"
+      v-if="configStore.rainfallVisible && cityItem.rainfall > 0"
       class="btn-umbrella"
       @click.stop="emit('umbrella-reminder', cityItem.name, cityItem.rainfall)"
     >
@@ -37,9 +51,7 @@ const emit = defineEmits(['select-card', 'click-detail', 'umbrella-reminder'])
 
     <button
       class="btn-detail"
-      @click.stop="
-        emit('click-detail', cityItem.name, cityItem.status, cityItem.rainfall)
-      "
+      @click.stop="emit('click-detail', cityItem.name, cityItem.status, cityItem.rainfall)"
     >
       상세보기
     </button>
